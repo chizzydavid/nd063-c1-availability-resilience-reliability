@@ -1,0 +1,18 @@
+mysql> use test_db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> insert into employee_table(name, occupation, age) values('John', 'plumber', 23);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employee_table;
++----+------+------------+-----+
+| id | name | occupation | age |
++----+------+------------+-----+
+|  1 | Mary | doctor     |  44 |
+|  2 | John | plumber    |  23 |
++----+------+------------+-----+
+2 rows in set (0.00 sec)
+
+mysql> 

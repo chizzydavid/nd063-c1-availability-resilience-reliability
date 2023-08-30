@@ -1,0 +1,24 @@
+mysql> create database test_db;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use test_db;
+Database changed
+mysql> CREATE TABLE employee_table(  
+    ->     id int NOT NULL AUTO_INCREMENT,  
+    ->     name varchar(45) NOT NULL,  
+    ->     occupation varchar(35) NOT NULL,  
+    ->     age int NOT NULL,  
+    ->     PRIMARY KEY (id)  
+    -> );
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> insert into employee_table(name, occupation, age) values('Mary', 'doctor', 44);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from employee_table;
++----+------+------------+-----+
+| id | name | occupation | age |
++----+------+------------+-----+
+|  1 | Mary | doctor     |  44 |
++----+------+------------+-----+
+1 row in set (0.00 sec)

@@ -1,0 +1,28 @@
+RTO and RPO for a Multi-AZ, Multi-Region RDS Database
+
+1. Minimum RTO for a single AZ outage
+
+The RTO (Recovery Time Objective) for a single AZ outage would be around 60-120 seconds 
+This is because AWS would automatically failover from the database in the Inactive AZ to the database in the Active AZ.
+This failover happens quickly due to the synchronous data replication that's carried out across the databases in the different Availability Zones.
+
+
+2. Minimum RTO for a single region outage
+
+The RTO (Recovery Time Objective) for a single region outage could be around 60-90 minutes.
+In this scenario, there is no automatic failover but since there is an active Read Replica in a standby region, we first have to promote the read replica to a primary instance so it can handle both read and write traffic (as opposed to read traffic alone while it's a read replica)
+After this, applications connected to the database in the inactive region would need to be manually switched to the newly promoted instance in the standby region. 
+We also need to note that the replication happening between regions is asynchronous.
+
+
+3. Minimum RPO for a single AZ outage
+
+The RPO (Recovery Point Objective) is the maximum duration that we will lose data during the switch between the two Availability Zones
+The data loss will occur only during the failover period, since data is copied synchronously we expect a similar time to the RTO which is 60 - 120 seconds
+
+
+4. Minimum RPO for a single region outage
+
+The RPO (Recovery Point Objective) is the maximum duration that we will lose data during the switch between the two Reginos
+Connected applications would lose all data during this period, until the manual failover to the instance in the standby region is complete. We can also expect a time frame of around 60 - 90 minutes.
+
